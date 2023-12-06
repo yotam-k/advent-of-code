@@ -1,2 +1,4 @@
-# aoc-2023
-Advent of Code 2023 - Learning Rust this year
+# advent-of-code
+Advent of Code solutions for all years I've done it
+
+Started in 2023
