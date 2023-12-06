@@ -46,7 +46,8 @@ fn part1(input_split: &Vec<&str>) {
 
         let game_rounds = game_rounds.split(";").collect::<Vec<&str>>();
         let mut should_add = true;
-        for round in game_rounds {
+
+        'outer: for round in game_rounds {
             let dice = round.split(",").collect::<Vec<&str>>();
             for die in dice {
                 let num: u32 = die
@@ -62,23 +63,26 @@ fn part1(input_split: &Vec<&str>) {
                     .collect::<String>();
 
                 match color.as_str() {
-                    "R" => should_add = num < RED,
-                    "G" => should_add = num < GREEN,
-                    "B" => should_add = num < BLUE,
+                    "R" => should_add = num <= RED,
+                    "G" => should_add = num <= GREEN,
+                    "B" => should_add = num <= BLUE,
                     _ => panic!("Shouldn't get here"),
                 }
-            }
 
-            if !should_add {
-                break;
+                if !should_add {
+                    break 'outer;
+                }
             }
         }
-
-        println!("Game ID = {}, should add = {}", game_id, should_add);
 
         if should_add {
             total += game_id;
         }
+
+        println!(
+            "Game ID = {}, should add = {}, total = {}",
+            game_id, should_add, total
+        );
     }
 
     println!("Part 1 total is {}", total);
