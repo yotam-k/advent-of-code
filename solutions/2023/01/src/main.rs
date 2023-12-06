@@ -1,6 +1,5 @@
-use std::fs;
-
 use aho_corasick::AhoCorasick;
+use std::fs;
 
 fn main() -> std::io::Result<()> {
     let input = fs::read_to_string("input.txt")?;
